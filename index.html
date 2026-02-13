@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti ❤️</title>
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffe6f0, #fff0f5);
+    text-align: center;
+    padding: 30px;
+    overflow-x: hidden;
+}
+
+h1 {
+    color: #ff3366;
+    margin-bottom: 30px;
+}
+
+#botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    margin: 10px;
+    padding: 15px 20px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ff4d88;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+button:hover {
+    transform: scale(1.2);
+    background-color: #ff6699;
+}
+
+button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+#mensaje {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #cc0066;
+    min-height: 60px;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Confeti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background-color: #ff3366;
+    top: -10px;
+    animation: caer 4s linear infinite;
+    border-radius: 50%;
+}
+
+@keyframes caer {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<h1>20 Razones por las que te amo ❤️</h1>
+
+<div id="botones"></div>
+
+<div id="mensaje"></div>
+
+<script>
+const mensajes = [
+"Me encanta cuando dices muajajaj hablando de cosas cochinas.",
+"Eres la persona a la que más amaré nunca quiero vivir una vida contigo.",
+"Que me digas que me amas y decírtelo de vuelta para verte sonreir.",
+"Me haces sentir la persona más afortunada del mundo.",
+"Amo cómo me miras en llamada.",
+"Eres todo lo que siempre pude soñar mi chica y voy a dar todo para ti.",
+"Tu trato conmigo siempre estás dispuesta a hablar todos los días.",
+"No imagino mi vida sin tus mimitos mi vida.",
+"Amo cuando me escribes en mayúscula para demostrar que quieres hablar contigo.",
+"Me parece genial que me cuentes tus problemas y que tengamos esa confianza el uno en el otro.",
+"Siempre quiero hablar contigo sobre nuestro futuro y todas las cosas que aún tenemos por hacer.",
+"Como no, me encanta hacer llamada contigo eres la persona con la que más me río y cuando te ríes tú siento que me derrito al escuchar tu risa.",
+"Cada vez que te veo no hago más que adorarte por todo lo que eres y eso hace que te quiera más cada día.",
+"Todas las fotos,vídeos y audios que me mandas hacen mi día más ameno.",
+"Siempre me apoyas y eres la persona que mas me ayuda en mi día a día gracias mi amor.",
+"Tu relación con mi madre es increíble y va a serlo todavía más estoy seguro.",
+"Siento que tenemos una conexión espectacular y que estamos hechos el uno para el otro,y lo sentí desde el primer día.",
+"Me hace mucha ilusión cuando te preocupas de mí o de cualquier ser querido mío.",
+"Eres lo mejor que me ha pasado en mi vida y estoy seguro que nada lo va a superar porque eres el motivo por el que tengoganas de que pase el tiempo rápido.",
+"Estoy deseando poder sentirte y decirte directamente todo esto que siento por ti y darte un beso y abrazarte justo después."
+];
+
+const botonesDiv = document.getElementById("botones");
+const mensajeDiv = document.getElementById("mensaje");
+
+mensajes.forEach((mensaje, index) => {
+    const boton = document.createElement("button");
+    boton.textContent = "💌";
+    
+    boton.onclick = function() {
+        mensajeDiv.textContent = mensaje;
+        mensajeDiv.style.opacity = 0;
+        setTimeout(() => mensajeDiv.style.opacity = 1, 100);
+        boton.disabled = true;
+
+        // Confeti si es el último mensaje
+        if(index === mensajes.length - 1){
+            for(let i=0;i<50;i++){
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random()*100+'vw';
+                c.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 70%)`;
+                c.style.width = c.style.height = (5+Math.random()*10)+'px';
+                document.body.appendChild(c);
+                setTimeout(()=>c.remove(), 4000);
+            }
+        }
+    };
+
+    botonesDiv.appendChild(boton);
+});
+</script>
+
+</body>
+</html>
